@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hybris-test-runner-config
+  namespace: qa-test-runners
+data:
+  TEST_ENV: STG
+  TEST_MARKER: part_3
+  SELENIUM_GRID_URL: http://selenium-grid-router.selenium-grid.svc.cluster.local:4444/wd/hub
+

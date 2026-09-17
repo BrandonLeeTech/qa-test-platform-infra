@@ -1,0 +1,18 @@
+# Conservative local-learning values for the official docker-selenium chart.
+# Pin the chart version in the install command once a tested version is chosen.
+
+isolateComponents: true
+
+ingress:
+  enabled: false
+
+components:
+  router:
+    serviceType: ClusterIP
+
+autoscaling:
+  enabled: false
+
+basicAuth:
+  enabled: false
+

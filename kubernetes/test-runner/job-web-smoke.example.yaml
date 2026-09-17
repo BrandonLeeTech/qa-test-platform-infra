@@ -1,0 +1,44 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: hybris-web-smoke-
+  namespace: qa-test-runners
+  labels:
+    app.kubernetes.io/name: hybris-web-smoke
+    app.kubernetes.io/part-of: qa-test-platform
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 1800
+  ttlSecondsAfterFinished: 3600
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: hybris-web-smoke
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: pytest-runner
+          # Replace with an immutable image tag or digest from hybris-sanity-for-hk.
+          image: registry.example.com/hybris-tests:replace-me
+          imagePullPolicy: IfNotPresent
+          command: ["python", "-m", "pytest"]
+          args:
+            - tests/hk_sanity_web
+            - -m
+            - part_3
+            - -n
+            - "1"
+            - --use-grid
+            - --selenium-grid-url=$(SELENIUM_GRID_URL)
+            - --web-headless
+          envFrom:
+            - configMapRef:
+                name: hybris-test-runner-config
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512Mi
+            limits:
+              cpu: "1"
+              memory: 2Gi
+
