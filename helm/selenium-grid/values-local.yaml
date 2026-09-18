@@ -22,10 +22,10 @@ firefoxNode:
     - name: SE_VNC_NO_PASSWORD
       value: "true"
 
+# Edge images are AMD64-only because Microsoft does not provide Edge for Linux/ARM.
+# See: https://github.com/SeleniumHQ/docker-selenium#experimental-multi-arch-amd64aarch64armhf-images
 edgeNode:
-  extraEnvironmentVariables:
-    - name: SE_VNC_NO_PASSWORD
-      value: "true"
+  enabled: false
 
 autoscaling:
   enabled: false
