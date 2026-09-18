@@ -10,9 +10,25 @@ components:
   router:
     serviceType: ClusterIP
 
+# Local-only convenience: allow noVNC Live View without a password.
+# Do not use this setting when noVNC is exposed beyond the local machine.
+chromeNode:
+  extraEnvironmentVariables:
+    - name: SE_VNC_NO_PASSWORD
+      value: "true"
+
+firefoxNode:
+  extraEnvironmentVariables:
+    - name: SE_VNC_NO_PASSWORD
+      value: "true"
+
+edgeNode:
+  extraEnvironmentVariables:
+    - name: SE_VNC_NO_PASSWORD
+      value: "true"
+
 autoscaling:
   enabled: false
 
 basicAuth:
   enabled: false
-
